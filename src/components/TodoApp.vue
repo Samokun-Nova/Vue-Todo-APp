@@ -24,22 +24,22 @@
         </thead>
         <tbody>
           <tr v-for="(task, index) in todoTasks" :key="task.id || index">
-            <td>{{ task.name }}</td>
+            <td class="task-name">{{ task.name }}</td>
             <td>
               <span @click="changeStatus(index)" 
               :class="{ 'status-finished': task.status === 'finished'}"
-              class="pointer">
+              class="pointer status-cell">
                 {{ task.status }}
               </span>
             </td>
-            <td>{{ task.dueDate }} {{ task.dueTime }}</td>
+            <td class="due-time">{{ task.dueDate }} {{ task.dueTime }}</td>
             <td>
               <div class="countdown">
                 {{ calculateCountdown(task) }}
               </div>
             </td>
             <td>
-              <div class="edit-box">
+              <div class="edit-box actions">
                 <button @click="editTask(index)">Edit</button>
               </div>
             </td>
@@ -283,7 +283,7 @@ button {
 .table-head {
   background-color: rgb(236, 234, 241);
   color: grey;
-  border: 1px rgb(20, 165, 198) solid;
+  border: 3px rgb(20, 165, 198) solid;
 }
 
 
@@ -299,4 +299,44 @@ button {
 .countdown {
   font-weight: bold;
   color: #ff4500; /* or any color you prefer */
-}</style>
+}
+
+.status-cell {
+  font-weight: bold;
+}
+
+.status-finished {
+  color: green;
+}
+
+.task-name {
+  font-weight: bold;
+}
+
+.due-time {
+  color: #333; /* or any color you prefer */
+}
+
+.countdown {
+  font-weight: bold;
+  color: #ff4500; /* or any color you prefer */
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.task-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
